@@ -1,0 +1,11 @@
+location ~\.html$ {
+    if (-f /home/www/blog/html/$uri) {
+        root /home/www/blog/html;
+        break;
+    }
+    rewrite "^/article/(\d*).html$" /index.php?r=article/info&c=$1 last;
+    rewrite "^/article/t(\d*).html$" /index.php?r=article/index&tid=$1 last;
+    rewrite "^/label.html$" /index.php?r=index/label last;
+    rewrite "^/list.html$" /index.php?r=article/list last;
+    rewrite "^/zwl.html$" /index.php?r=article/zwl last;
+}

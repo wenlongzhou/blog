@@ -32,8 +32,8 @@
                 }, function(reqData, opts){//登录成功
                     //根据返回数据，更换按钮显示状态方法
                     $('.comment').removeClass('disabled');
-                    $('input[name="name"]').val(reqData.nickname);
-                    $('input[name="img"]').val(reqData.figureurl_qq_1);
+                    $('input[name="reply[name]"]').val(reqData.nickname);
+                    $('input[name="reply[img]"]').val(reqData.figureurl_qq_1);
                     var dom = document.getElementById(opts['btnId']),
                     _logoutTemplate=[
                         //头像
@@ -54,14 +54,14 @@
             );
         </script>
         <form action='<?php echo $this->createUrl('Article/AddComment');?>' method="post" onSubmit="return checkreply()">
-            <input type='hidden' name="name" value=""/>
-            <input type='hidden' name="img" value=""/>
-            <input type='hidden' name="article_id" value="<?php echo $data['id']?>"/>
-            <input type='hidden' name="pid" id="info-pid" value="0"/>
-            <textarea style="width:100%" id="commentInput" name="content"></textarea>
+            <input type='hidden' name="reply[name]" value=""/>
+            <input type='hidden' name="reply[img]" value=""/>
+            <input type='hidden' name="reply[article_id]" value="<?php echo $data['id']?>"/>
+            <input type='hidden' name="reply[pid]" id="info-pid" value="0"/>
+            <textarea style="width:100%" id="commentInput" name="reply[content]"></textarea>
             <button type="submit" class="btn btn-default comment disabled">提交</button>
             <div style="float:right">
-                <input type='text' name="captcha" id="info-captcha" placeholder="请输入验证码" value=""/>
+                <input type='text' name="reply[captcha]" id="info-captcha" placeholder="请输入验证码" value=""/>
                 <?php $this->widget('CCaptcha',array(
                     'showRefreshButton'=>false,
                     'clickableImage'=>true,

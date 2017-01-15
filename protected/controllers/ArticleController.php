@@ -43,12 +43,10 @@ class ArticleController extends Controller{
     public function actionAddComment(){
         if($_GET){
             $m = new Reply();
+            $m::fieldMap($_GET['reply'],array('name'=>'nickname','pid'=>'prev'));
+            $m->attributes = $_GET;
             $m->nickname = $_GET['name'];
-            $m->img = $_GET['img'];
-            $m->content = htmlspecialchars($_GET['content']);
-            $m->article_id = $_GET['article_id'];
             $m->prev = $_GET['pid'];
-            $m->captcha = $_GET['captcha'];
             if($m->save()){
                 echo "Y";
             }else{

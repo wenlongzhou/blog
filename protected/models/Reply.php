@@ -117,4 +117,15 @@ class Reply extends CActiveRecord
         $r = Reply::model()->findByPk($p);
         return $r->nickname;
     }
+
+    public static function fieldMap($array,$map){
+        foreach($array as $k => $v){
+            if(in_array($k,$map)){
+                $array[$map[$k]] = $v;
+                unset($array[$k]);
+            }
+        }
+        p($array);
+        return $array;
+    }
 }

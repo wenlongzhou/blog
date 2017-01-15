@@ -29,6 +29,7 @@ phpunit.phar
 /html
 /assets
 /protected/config
+/protected/runtime
 
 tests/_output/*
 tests/_support/_generated

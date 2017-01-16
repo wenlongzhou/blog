@@ -3410,3 +3410,59 @@ REQUEST_URI=/debug.php
 in /home/www/blog/protected/functions.php (21)
 in /home/www/blog/protected/controllers/ArticleController.php (21)
 in /home/www/blog/debug.php (14)
+2017/01/15 17:26:19 [error] [php] Missing argument 1 for CHttpRequest::getParam(), called in /home/www/blog/protected/controllers/ArticleController.php on line 45 and defined (/home/www/blog/framework/web/CHttpRequest.php:177)
+Stack trace:
+#0 /home/www/blog/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/www/blog/framework/web/CController.php(286): ArticleController->runAction()
+#2 /home/www/blog/framework/web/CController.php(265): ArticleController->runActionWithFilters()
+#3 /home/www/blog/framework/web/CWebApplication.php(282): ArticleController->run()
+#4 /home/www/blog/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/www/blog/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#6 /home/www/blog/debug.php(14): CWebApplication->run()
+REQUEST_URI=/debug.php?r=Article/AddComment&aid=72&name=%E5%91%A8%E4%B9%A6%E6%AE%8A&img=http%3A%2F%2Fq.qlogo.cn%2Fqqapp%2F101355974%2F70A872FBCE6F144F5C718FC18C2C5166%2F40&article_id=72&pid=0&content=aa&captcha=vaye
+in /home/www/blog/protected/controllers/ArticleController.php (45)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:36:06 [warning] [application] Failed to set unsafe attribute "r" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:36:06 [warning] [application] Failed to set unsafe attribute "aid" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:36:06 [warning] [application] Failed to set unsafe attribute "name" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:36:06 [warning] [application] Failed to set unsafe attribute "pid" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:36:12 [warning] [application] Failed to set unsafe attribute "r" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:36:12 [warning] [application] Failed to set unsafe attribute "aid" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:36:12 [warning] [application] Failed to set unsafe attribute "name" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:36:12 [warning] [application] Failed to set unsafe attribute "pid" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:37:12 [warning] [application] Failed to set unsafe attribute "r" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:37:12 [warning] [application] Failed to set unsafe attribute "aid" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:37:12 [warning] [application] Failed to set unsafe attribute "name" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/15 18:37:12 [warning] [application] Failed to set unsafe attribute "pid" of "Reply".
+in /home/www/blog/protected/controllers/ArticleController.php (46)
+in /home/www/blog/debug.php (14)
+2017/01/16 10:40:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin".' in /home/www/blog/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/www/blog/framework/web/CWebApplication.php(141): CWebApplication->runController('admin')
+#1 /home/www/blog/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /home/www/blog/index.php(16): CApplication->run()
+#3 {main}
+REQUEST_URI=/?r=admin
+---

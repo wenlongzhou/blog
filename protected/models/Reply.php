@@ -15,6 +15,10 @@
 class Reply extends CActiveRecord
 {
     public $captcha;
+    private static $map = array(
+                'name'=>'nickname',
+                'pid'=>'prev'
+            );
 	/**
 	 * @return string the associated database table name
 	 */
@@ -116,5 +120,23 @@ class Reply extends CActiveRecord
     public function getNickByPrev($p){
         $r = Reply::model()->findByPk($p);
         return $r->nickname;
+    }
+
+    public static function fieldMap($array){
+        foreach($array as $k => $v){
+            if(isset(self::$map[$k])){
+                $array[self::$map[$k]] = $v;
+                unset($array[$k]);
+            }
+        }
+        return $array;
+    }
+
+    public static function getComment($aid){
+        return self::model()->findAll(array(
+            'condition' => 'article_id=:aid',
+            'params'    => array(':aid'=>$aid),
+            'order'     => 'create_time asc'
+        ));
     }
 }

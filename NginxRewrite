@@ -8,4 +8,6 @@ location ~\.html$ {
     rewrite "^/label.html$" /index.php?r=index/label last;
     rewrite "^/list.html$" /index.php?r=article/list last;
     rewrite "^/zwl.html$" /index.php?r=article/zwl last;
+    rewrite "^/index.html$" /index.php last;
+    rewrite "^/admin.html$" /index.php?r=admin/admin last;
 }

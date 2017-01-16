@@ -43,12 +43,9 @@ class ArticleController extends Controller{
     public function actionAddComment(){
         if($_GET){
             $m = new Reply();
-            $m->nickname = $_GET['name'];
-            $m->img = $_GET['img'];
-            $m->content = htmlspecialchars($_GET['content']);
-            $m->article_id = $_GET['article_id'];
-            $m->prev = $_GET['pid'];
-            $m->captcha = $_GET['captcha'];
+            //字段映射
+            $data = $m::fieldMap($_GET['reply']);
+            $m->attributes = $data;
             if($m->save()){
                 echo "Y";
             }else{
@@ -60,7 +57,7 @@ class ArticleController extends Controller{
     }
 
     public function actionComment($aid){
-        $data = Reply::model()->findAll('article_id=:aid',array(':aid'=>$aid));
+        $data = Reply::getComment($aid);
         $this->renderPartial('comment',array('data'=>$data));
     }
 

@@ -30,6 +30,7 @@ phpunit.phar
 /assets
 /protected/config
 /protected/runtime
+*/runtime
 
 tests/_output/*
 tests/_support/_generated

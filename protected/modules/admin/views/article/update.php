@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-lg-6 col-md-7 col-sm-7">
                     <div id="test-editormd" style="z-index:999">
-                        <textarea style="display:none;" name="Article[path]"></textarea>
+                        <textarea style="display:none;" name="Article[md_content]"></textarea>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2" style="color:orangered;font-size: 0.8rem;line-height:34px">
@@ -103,18 +103,18 @@
         // ctrl + s监听事件
         $(document).keydown(function(e){
             if( e.ctrlKey  == true && e.keyCode == 83 ){
-                $.post(
-                    '',
-                    {
-                        "Article[title]":$('[name*="Article[title]"]').val(),
-                        "Article[tag_id]":$('[name*="Article[tag_id]"]').val(),
-                        "test-editormd-html-code":$('.editormd-preview-container').html(),
-                        "Article[path]":$('[name*="Article[path]"]').val(),
-                        "id":$('#back_id').val()
+                if($('[name*="Article[title]"]').val() =='' || $('[name*="Article[path]"]').val() == ''){
+                    return false;
+                }
+                var data = $('form').serialize();
+                data += '&' + encodeURIComponent('Article[content]') + '=' + encodeURIComponent($('.editormd-preview-container').html());
+                $.post('',data,function(id){
+                        $('#back_id').val(id);
                     }
                 );
                 return false; // 截取返回false就不会保存网页了
             }
         });
+
     }
 </script>

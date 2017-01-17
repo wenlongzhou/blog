@@ -16,20 +16,16 @@ class ArticleController extends BaseController{
         $m = new Article();
         if($_POST){
             if(isset($_POST['id']) && $_POST['id'] != ''){
-                $this->actionupdate($_POST['id']);
-                exit;
+                $this->actionupdate($_POST['id']);exit;
             }
             $m->attributes  = $_POST['Article'];
-            $m->path        = $_POST['Article']['path'];
-            $m->content     = $_POST['test-editormd-html-code'];
+            $m->md_content = $_POST['Article']['md_content'];
             if($m->validate()){
                 $m->path = './assets/editor/md/'.$_POST['Article']['title'].'.md';
-                $res = file_put_contents($m->path,$_POST['Article']['path']);
+                $res = file_put_contents($m->path,$_POST['Article']['md_content']);
                 if($m->save() && $res){
-                    Yii::app()->cache->delete('index');
                     if(Yii::app()->request->isAjaxRequest){
-                        echo $m->primaryKey;
-                        exit;
+                        echo $m->primaryKey;exit;
                     }
                     Yii::app()->user->setFlash('success', '添加成功！');
                     $this->redirect(array('article/index'));
@@ -43,15 +39,12 @@ class ArticleController extends BaseController{
     public function actionupdate($id){
         $data = Article::model()->findByPk($id);
         if($_POST){
-            file_put_contents($data->path,$_POST['Article']['path']);
-            $data->title    = $_POST['Article']['title'];
-            $data->tag_id   = $_POST['Article']['tag_id'];
-            $data->content  = $_POST['test-editormd-html-code'];
+            file_put_contents($data->path,$_POST['Article']['md_content']);
+            $data->attributes = $_POST['Article'];
+            $data->md_content = $_POST['Article']['md_content'];
             if($data->save()){
-                Yii::app()->cache->delete('index');
                 if(Yii::app()->request->isAjaxRequest){
-                    echo $data->primaryKey;
-                    exit;
+                    echo $data->primaryKey;exit;
                 }
                 Yii::app()->user->setFlash('success', '修改成功！');
                 $this->redirect(array('article/index'));
@@ -64,7 +57,9 @@ class ArticleController extends BaseController{
     public function actiondelete($id,$link){
         if(Article::model()->findByPk($id)->delete() && unlink($link)){
             Yii::app()->user->setFlash('success','删除成功！');
-            $this->redirect(array('article/index'));
+        }else{
+            Yii::app()->user->setFlash('success','删除失败！');
         }
+        $this->redirect(array('article/index'));
     }
 }

@@ -28,6 +28,9 @@ phpunit.phar
 
 /html
 /assets
+/assets/z
+/assets/home
+/assets/admin
 /protected/config
 /protected/runtime
 */runtime

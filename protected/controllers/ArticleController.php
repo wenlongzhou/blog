@@ -18,7 +18,7 @@ class ArticleController extends Controller{
      * @param tid:标签id
      */
     public function actionIndex($tid=0,$s=''){
-        logs();
+        //logs();
         $d = Article::getHomeArticle($tid,$s);
         $this->renderStatic('index',array('data'=>$d));
     }
